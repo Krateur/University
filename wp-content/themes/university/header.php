@@ -1,9 +1,11 @@
 <!doctype html>
-<html>
+<html <?php language_attributes(); ?>>
 <head>
-    <?php wp_head(); ?>
+    <meta charset="<?php bloginfo('charset') ?>">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <?php wp_head();     ?>
 </head>
-<body>
+<body <?php body_class(); ?>>
 
 <header class="site-header">
     <div class="container">
@@ -13,11 +15,11 @@
         <div class="site-header__menu group">
             <nav class="main-navigation">
                 <ul>
-                    <li><a href="<?= site_url('/index.php/about-us') ?>">About Us</a></li>
+                    <li class="<?= is_page('about-us') ? 'current-menu-item' : '' ?>"><a href="<?= site_url('/index.php/about-us') ?>">About Us</a></li>
                     <li><a href="#">Programs</a></li>
                     <li><a href="#">Events</a></li>
                     <li><a href="#">Campuses</a></li>
-                    <li><a href="#">Blog</a></li>
+                    <li class="<?= is_page('blog') ? 'current-menu-item' : '' ?>"><a href="<?= site_url('/index.php/blog') ?>">Blog</a></li>
                 </ul>
             </nav>
             <div class="site-header__util">
