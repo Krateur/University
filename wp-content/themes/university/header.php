@@ -17,9 +17,9 @@
                 <ul>
                     <li class="<?= is_page('about-us') ? 'current-menu-item' : '' ?>"><a href="<?= site_url('/index.php/about-us') ?>">About Us</a></li>
                     <li><a href="#">Programs</a></li>
-                    <li><a href="#">Events</a></li>
+                    <li><a href="#">Events</a>  </li>
                     <li><a href="#">Campuses</a></li>
-                    <li class="<?= is_page('blog') ? 'current-menu-item' : '' ?>"><a href="<?= site_url('/index.php/blog') ?>">Blog</a></li>
+                    <li class="<?= (get_post_type() == 'post') ? 'current-menu-item' : '' ?>"><a href="<?= site_url('/index.php/blog') ?>">Blog</a></li>
                 </ul>
             </nav>
             <div class="site-header__util">
