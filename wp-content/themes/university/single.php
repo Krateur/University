@@ -1,8 +1,4 @@
-<?php
-
-declare(strict_types=1);
-get_header();
-?>
+<?php declare(strict_types=1); get_header(); ?>
         <?php while(have_posts()): the_post(); ?>
             <div class="page-banner">
                 <div class="page-banner__bg-image" style="background-image: url(<?= get_theme_file_uri('images/ocean.jpg') ?>);"></div>

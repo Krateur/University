@@ -16,16 +16,35 @@ get_header(); ?>
         <div class="full-width-split__inner">
             <h2 class="headline headline--small-plus t-center">Upcoming Events</h2>
             <?php
+                $today = date('m d Y');
+
                 $eventQuery = new WP_Query([
                         'posts_per_page' => 2,
-                        'post_type' => 'event'
+                        'post_type' => 'event',
+                        'mata_key' => 'event_date',
+                        'orderby' => 'meta_value_num',
+                        'order' => 'ASC',
+                        'meta_query' => [
+                                [
+                                        'key' => 'event_date',
+                                        'compare' => '>=',
+                                        'value' => $today,
+                                        'type' => 'numeric'
+                                ]
+                        ]
                 ]);
             ?>
             <?php while ($eventQuery->have_posts()): $eventQuery->the_post(); ?>
             <div class="event-summary">
                 <a class="event-summary__date t-center" href="#">
-                    <span class="event-summary__month"><?= the_time('M'); ?></span>
-                    <span class="event-summary__day"><?= the_time('d'); ?></span>
+                    <span class="event-summary__month">
+                                <?php
+                                $date = get_field('event_date');
+                                $phpDate = new DateTime("$date");
+                                echo $phpDate->format('M');
+                                ?>
+                    </span>
+                    <span class="event-summary__day"><?= $phpDate->format('d'); ?></span>
                 </a>
                 <div class="event-summary__content">
                     <h5 class="event-summary__title headline headline--tiny"><a href="<?= the_permalink(); ?>"><?= the_title(); ?></a></h5>
@@ -34,7 +53,7 @@ get_header(); ?>
             </div>
             <?php endwhile; ?>
 
-            <p class="t-center no-margin"><a href="<?= site_url('/index.php/events'); ?>" class="btn btn--blue">View All Events</a></p>
+            <p class="t-center no-margin"><a href="<?= site_url('/index.php/event'); ?>" class="btn btn--blue">View All Events</a></p>
 
         </div>
     </div>

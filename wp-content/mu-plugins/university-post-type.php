@@ -3,6 +3,11 @@ declare(strict_types=1);
 
 function university_post_types() {
     register_post_type('event', [
+        'supports' => ['editor', 'title', 'excerpt'],
+        'rewrite' => [
+            'slug' => 'event'
+        ],
+        'has_archive' => true,
         'public' => true,
         'labels' => [
             'name' => 'Events',
